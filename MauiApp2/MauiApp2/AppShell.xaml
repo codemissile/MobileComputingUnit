@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp2.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp2"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutIcon="icons_menu.png"
+    SemanticProperties.Hint="Press Icon Menu to see other stuff."
+    Shell.TabBarIsVisible="False"
+    Title="Flyout"
+    BackgroundColor="{AppThemeBinding Light=#A2B8B9, Dark=#4F6367}"
+    Shell.BackgroundColor="{AppThemeBinding Light=#A2B8B9, Dark=#4F6367}"
+    Shell.ForegroundColor="{AppThemeBinding Light=black, Dark=White}"
+    >
+
+
+
+    <!-- Flyout Header -->
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid Background="{AppThemeBinding Light=#A2B8B9, Dark=#2E393D}" Padding="25">
+                <Image Source="logo_maui.png"
+                       HeightRequest="75"
+                       WidthRequest="75"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"/>
+                <Label Text="Welcome"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+
+
+
+    <!-- Flyout Footer Template -->
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Grid Background="{AppThemeBinding Light=#A2B8B9, Dark=#2E393D}" Padding="10">
+                <Label Text="Copyright © Misal"
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontAttributes="None"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+
+    <Shell.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="{AppThemeBinding Light=#A2B8B9, Dark=#4F6367}" Offset="0.1"/>
+            <GradientStop Color="{AppThemeBinding Light=#A2B8B9, Dark=#4F6367}" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Shell.Background>
+    
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions=".38, .70*" RowDefinitions="*,*,*" RowSpacing="15" ColumnSpacing="15" Padding="10">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonState">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"   Value="{AppThemeBinding Light=#B8D8D8, Dark=#325858}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=SkyBlue, Dark=DarkBlue}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <HorizontalStackLayout Grid.Row="0" Spacing="15">
+                    <Image 
+                        Source="{Binding FlyoutIcon}"
+                        Aspect="AspectFill"
+                        WidthRequest="50" 
+                        HeightRequest="50"
+                        VerticalOptions="Center"
+                        SemanticProperties.Description="Fly out Icon of the logo">
+                    </Image>
+                    <Label Text="{Binding Title}" 
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           VerticalOptions="Center"
+                           SemanticProperties.Description="The title of menu">
+                    </Label>
+                    
+                </HorizontalStackLayout>
+            </Grid>
+        </DataTemplate>
+        
+    </Shell.ItemTemplate>
+
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+        
+            <ShellContent                      
+            Title="Main Page"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage"
+            Icon="home_page.png"
+            SemanticProperties.Description="Home Page"
+            SemanticProperties.Hint="press to go back to home screen."/>
+      
+        <ShellContent
+            Title="About"
+            ContentTemplate="{DataTemplate local:AboutUs}"
+            Route="AboutPage"
+            Icon="about_us.png"
+            SemanticProperties.Description="about Page"
+            SemanticProperties.Hint="press to go back to about screen."/>
+
+        <ShellContent
+            Title="Sensors"
+            ContentTemplate="{DataTemplate local:Sensors}"
+            Route="Sensors"
+            Icon="sensors.png"
+            SemanticProperties.Description="Sensors Page."
+            SemanticProperties.Hint="press to go back to Sensor screen."/>
+
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:Profile}"
+            Route="Profile"
+            Icon="profile_pic.png"
+            SemanticProperties.Description="Profile Page."
+            SemanticProperties.Hint="press to go back to profile screen"/>
+
+
+    </FlyoutItem>
+    
+</Shell>
+    
+    

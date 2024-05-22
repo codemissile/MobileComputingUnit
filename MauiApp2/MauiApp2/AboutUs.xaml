@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:MauiApp2.Helpers" 
+             x:Class="MauiApp2.AboutUs"
+             Title="AboutUs"
+             Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"
+            Shell.BackgroundColor="{AppThemeBinding Light=#A2B8B9, Dark=#2E393D}"
+            Shell.ForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+    
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30" 
+                             BackgroundColor ="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}">
+            <Label Text="About Our App" FontSize="Large" FontAttributes="Bold"
+                   SemanticProperties.HeadingLevel="Level1"
+                   SemanticProperties.Hint="Overview of the Cycle Crash Detection App"
+                   SemanticProperties.Description="Header"/>
+            <Label Text="Welcome to our Cycle Crash Detection App. This application is designed to enhance cyclist safety using the latest in mobile sensor technology. Utilizing both the accelerometer and gyroscope sensors of your device, our app continuously monitors for patterns that could indicate a crash.&#10;&#10;In the event of an accident, the app automatically detects the crash and sends an SMS message with your location to a pre-set recipient from your profile. This swift communication helps ensure that emergency assistance can be dispatched to your location as quickly as possible.&#10;&#10;Our goal is to provide cyclists with peace of mind, knowing that in the event of an unforeseen accident, help is just a moment away. Thank you for trusting us with your safety on the road." 
+                   SemanticProperties.HeadingLevel="Level2"
+                   SemanticProperties.Description="body"
+                   FontSize="Medium"
+                  FontAttributes="Italic"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+
+
+
+</ContentPage>
+

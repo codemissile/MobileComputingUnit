@@ -1,0 +1,56 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.Profile"
+             Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#A2B8B9, Dark=#2E393D}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry" x:Key="EntryStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=black, Dark=White}" />
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=#4D4D4D, Dark=#CFCFCF}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="ButtonStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=black, Dark=White}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#A2B8B9, Dark=#4F6367}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20" x:Name="ContentLayout">
+
+
+        <!-- Entry controls with dynamic styles -->
+        <Entry Placeholder="First Name" x:Name="FirstNameEntry" 
+               TextChanged="OnEntryTextChanged" Completed="OnEntryCompleted" 
+               AutomationProperties.Name="First Name" AutomationProperties.HelpText="Enter your first name"
+               Style="{StaticResource EntryStyle}"/>
+
+
+        <Entry Placeholder="Last Name" x:Name="LastNameEntry"
+               TextChanged="OnEntryTextChanged" Completed="OnEntryCompleted" 
+               AutomationProperties.Name="Last Name" AutomationProperties.HelpText="Enter your last name"
+               Style="{StaticResource EntryStyle}"/>
+
+        <Entry Placeholder="Phone Number" x:Name="PhoneNumberEntry"
+               Keyboard="Telephone" TextChanged="OnEntryTextChanged" Completed="OnEntryCompleted"
+               AutomationProperties.Name="Phone Number" AutomationProperties.HelpText="Enter your phone number"
+               Style="{StaticResource EntryStyle}"/>
+
+        <Entry Placeholder="Email" x:Name="EmailEntry"
+               Keyboard="Email" TextChanged="OnEntryTextChanged" Completed="OnEntryCompleted"
+               AutomationProperties.Name="Email" AutomationProperties.HelpText="Enter your email address"
+               Style="{StaticResource EntryStyle}"/>
+
+        <!-- Spacing for aesthetics -->
+        <BoxView HeightRequest="20" Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"/>
+        <!-- Confirmation button -->
+        <Button Text="Confirm" Clicked="ConfirmButton_Clicked" 
+                AutomationProperties.Name="Confirm Button" AutomationProperties.HelpText="Press to confirm"
+                Style="{StaticResource ButtonStyle}"/>
+    </StackLayout>
+</ContentPage>

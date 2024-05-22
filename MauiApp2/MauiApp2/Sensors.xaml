@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.Sensors"
+             Title="Sensors"
+             Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#A2B8B9, Dark=#2E393D}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=black, Dark=White}" />
+
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}" />
+        </Style>
+            
+        <Style TargetType="Frame" x:Key="FrameStyle">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+
+            <Frame CornerRadius="10" Padding="10" Style="{StaticResource FrameStyle}">
+                <Label 
+                Text="Sensors Settings"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="5"
+                Style="{StaticResource LabelStyle}"/>
+            </Frame>
+            <Frame CornerRadius="10" Padding="10" Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Acceleration" FontSize="Medium" HorizontalOptions="Center" />
+                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label 
+                            
+                            Text="Update Acceleration"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="StartAndExpand" 
+                            AutomationProperties.IsInAccessibleTree="True"
+                            AutomationProperties.Name="Update Acceleration Label"
+                             SemanticProperties.HeadingLevel="Level1"
+                            />
+                        <Switch                            
+                            x:Name="AccelerometerSwitch"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"                       
+                            Toggled="OnToggleAccelerometerToggled"
+                            SemanticProperties.Description="Switch toggle"
+                            SemanticProperties.Hint="toggle to turn on Acceleration"
+                            AutomationProperties.IsInAccessibleTree="True"
+                            AutomationProperties.Name="Acceleration Switch"/>
+                    </HorizontalStackLayout>
+
+                    <Label x:Name="xResult" Text="X: 0" Padding="10"/>
+                    <Label x:Name="yResult" Text="Y: 0" Padding="10"/>
+                    <Label x:Name="zResult" Text="Z: 0" Padding="10"/>
+                    <Label x:Name="AccelLabel" Text="Magnitude: 0" Padding="10"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="10" Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Gyroscope" FontSize="Medium" HorizontalOptions="Center"/>
+                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label 
+                            Text="Update Gyroscope"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="StartAndExpand" 
+                            AutomationProperties.IsInAccessibleTree="True"
+                            AutomationProperties.Name="Update Gyroscope Label"
+                             SemanticProperties.HeadingLevel="Level2"/>
+                        <Switch
+                            SemanticProperties.Description="Switch toggle"
+                            SemanticProperties.Hint="toggle to turn on Gyroscope"
+                            AutomationProperties.IsInAccessibleTree="True"
+                            AutomationProperties.Name="Gyroscope Switch"
+                            x:Name="GyroscopeSwitch"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Toggled="OnToggleGyroscopeToggled"/>
+                    </HorizontalStackLayout>
+
+                    <Label x:Name="xGyroResult" Text="X: 0" Padding="10"/>
+                    <Label x:Name="yGyroResult" Text="Y: 0" Padding="10"/>
+                    <Label x:Name="zGyroResult" Text="Z: 0" Padding="10"/>
+                    <Label x:Name="gyroMagnitudeResult" Text="Magnitude: 0" Padding="10"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="10" Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Position" FontSize="Medium" HorizontalOptions="Center"/>
+
+                    <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label 
+                            Text="Update Position"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="StartAndExpand"
+                            AutomationProperties.IsInAccessibleTree="True"
+                            AutomationProperties.Name="Update Postion Label"
+                             SemanticProperties.HeadingLevel="Level3"/>
+                        <Switch
+                            SemanticProperties.Description="Switch toggle"
+                            SemanticProperties.Hint="toggle to turn on Postion"
+                            AutomationProperties.IsInAccessibleTree="True"
+                            AutomationProperties.Name="Postion Switch"
+                            x:Name="PositionSwitch"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Toggled="OnTogglePositionToggled"/>
+                    </HorizontalStackLayout>
+
+                    <Label x:Name="latitudeResult" Text="Latitude: 0" Padding="10"/>
+                    <Label x:Name="longitudeResult" Text="Longitude: 0" Padding="10"/>
+                    <Label x:Name="altitudeResult" Text="Altitude: 0 m" Padding="10"/>
+                    <Label x:Name="speedResult" Text="Speed: 0 km/h" Padding="10"/>
+                </VerticalStackLayout>
+            </Frame>
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

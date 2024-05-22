@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.MainPage"
+             Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"
+             Shell.BackgroundColor="{AppThemeBinding Light=#A2B8B9, Dark=#2E393D}"
+             Shell.ForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+
+        <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="LabelStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=black, Dark=White}" />
+
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}" />
+            </Style>
+            <Style TargetType="Frame" x:Key="FrameStyle">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="ButtonStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=black, Dark=White}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#A2B8B9, Dark=#4F6367}" />
+            </Style>
+
+            <Style TargetType="Editor" x:Key="EditorStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=black, Dark=White}" />
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=#4D4D4D, Dark=#CFCFCF}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#EEF5DB, Dark=#232C0C}" />
+            </Style>
+        </ResourceDictionary>
+        </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+        Spacing="20"
+        Margin="0"
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"
+        Padding="20">
+
+            <!-- Top Spacing for aesthetics -->
+            <BoxView HeightRequest="20" Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"/>
+            <Frame CornerRadius="15" Padding="5" Style="{StaticResource FrameStyle}">
+                <Label x:Name="stopwatchTime" Text="00:00:00.00" Padding="10" HorizontalOptions="Center" VerticalOptions="Center" 
+                FontSize="Large" FontAttributes="Bold" Style="{StaticResource LabelStyle}"
+                   SemanticProperties.Description="This is your time you did"/>
+            </Frame>
+
+            <Frame CornerRadius="15" Padding="1" Style="{StaticResource FrameStyle}">
+                <Label x:Name="timeLable" Text="timeLap" Padding="10" HorizontalOptions="Center" 
+               Style="{StaticResource LabelStyle}" />
+            </Frame>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout>
+                    <!-- Accelerometer Labels -->
+                    <Label x:Name="xResult" Text="AccelX: 0" Padding="10"/>
+                    <Label x:Name="yResult" Text="AccelY: 0" Padding="10"/>
+                    <Label x:Name="zResult" Text="AccelZ: 0" Padding="10"/>
+                    <Label x:Name="AccelLabel" Text="AccelMagnitude: 0" Padding="10"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <!-- Gyroscope Labels -->
+                    <Label x:Name="xGyroResult" Text="GyroX: 0" Padding="10"/>
+                    <Label x:Name="yGyroResult" Text="GyroY: 0" Padding="10"/>
+                    <Label x:Name="zGyroResult" Text="GyroZ: 0" Padding="10"/>
+                    <Label x:Name="gyroMagnitudeResult" Text="GyroMagnitude: 0" Padding="10"/>
+
+                    
+
+                </StackLayout>
+            </StackLayout>
+            <!-- Speed Label -->
+            <StackLayout
+             VerticalOptions="Center">
+                <Label x:Name="speedResult" Text="Speed: 0 km/h" Padding="10"/>
+            </StackLayout>
+            <!-- Round Button, centered -->
+            <Button x:Name="startStopButton"
+                Text="Start"
+                FontSize="Large"
+                FontAttributes="Bold"
+                CornerRadius="100"
+                HeightRequest="200"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Clicked="OnStartStopClicked"              
+                Style="{StaticResource ButtonStyle}"
+                AutomationProperties.Name="Start Stop Button"
+                SemanticProperties.Description="Start Stop Button"
+                SemanticProperties.Hint="tap on button to start, tap again to stop"/>
+
+            <Button x:Name="SOS" Text="SOS, Press and hold" Released="OnButtonReleased" 
+                Pressed="OnButtonPressed" BackgroundColor="#FE5F55" HorizontalOptions="Center" 
+                FontAttributes="Bold" TextColor="{AppThemeBinding Light=black, Dark=White}"
+                AutomationProperties.Name="Toggle for SOS"
+                SemanticProperties.Description="Toggle for SOS"
+                SemanticProperties.Hint="Press And Hold for few Second"
+                />
+
+            <HorizontalStackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Spacing="5">
+                <!-- Adjust spacing as needed for visual appeal -->
+                <Frame CornerRadius="15" Padding="5" Style="{StaticResource FrameStyle}">
+
+                    <Label Text="Call 999"
+           VerticalOptions="Center"
+           HorizontalOptions="Center" 
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Padding="5"
+                   Style="{StaticResource LabelStyle}"
+                   SemanticProperties.Description="call for emergency help line"/>
+                </Frame>
+                <Switch
+            AutomationProperties.Name="Accelerometer Toggle"
+            SemanticProperties.Hint="Swipe or tap to toggle"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            x:Name="callSwitch"
+            OnColor="Orange"
+            ThumbColor="green"
+            Toggled="OnToggleCallToggled"/>
+            </HorizontalStackLayout>
+
+
+            <Label x:Name="PhoneNumberLabel"
+               Text="Recipient"
+               SemanticProperties.Description="Phone number or email address of the recipient"
+               FontSize="Body"
+               Padding="5"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               FontAttributes="Bold, Italic"
+               Style="{StaticResource LabelStyle}"/>
+
+            <!-- Bottom Frame with Messaging UI -->
+            <Frame CornerRadius="10" Padding="10" BorderColor="LightGray" 
+       BackgroundColor="#EEF5DB"
+       VerticalOptions="EndAndExpand"
+       HorizontalOptions="FillAndExpand">
+                <Grid Padding="20" Margin="1,10,1,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <!-- Takes up most of the space -->
+                        <ColumnDefinition Width="Auto"/>
+                        <!-- Takes up only as much space as needed -->
+                    </Grid.ColumnDefinitions>
+
+                    <Editor Grid.Column="0"
+                AutoSize="TextChanges"
+                x:Name="MessageBox" 
+                Placeholder="Message" 
+                SemanticProperties.Hint="Enter your message here"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                Keyboard="Chat"
+                MaxLength="2000"
+                Style="{StaticResource EditorStyle}"
+                SemanticProperties.Description="message to be sent to recipent"/>
+
+                    <Button Grid.Column="1"
+                x:Name="SendBtn"
+                Text="Send"
+                Clicked="OnSendClicked"
+
+                VerticalOptions="Center"
+                Padding="10,0"
+                WidthRequest="100"
+                Style="{StaticResource ButtonStyle}"
+                AutomationProperties.Name="press to Send message"
+                SemanticProperties.Description="press to Send message to Recipent"
+                SemanticProperties.Hint="Press And Hold for few Second"/>
+                </Grid>
+            </Frame>
+
+
+            <!-- Bottom Spacing for aesthetics -->
+            <BoxView HeightRequest="20" Background="{AppThemeBinding Light=#B8D8D8, Dark=#304F4F}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
